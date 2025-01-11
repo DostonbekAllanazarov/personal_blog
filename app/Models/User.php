@@ -8,10 +8,15 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
+
+use App\Models\Comment;
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable,HasRoles;
-
+    public function username()
+    {
+        return $this->blongsTo(Comment::class, 'userID');
+    }
     /**
      * The attributes that are mass assignable.
      *

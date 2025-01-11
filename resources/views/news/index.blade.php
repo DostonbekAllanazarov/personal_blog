@@ -119,6 +119,8 @@
     </div>
 </nav>
 
+
+
 <!-- Main Content -->
 <div class="container py-5" style="background-color: #f8f9fa;">
     <!-- Page Header -->
@@ -127,8 +129,16 @@
         <p class="text-muted" style="font-size: 1.2rem;">O'z yangiliklaringizni biz bilan o'rtoqlashing!</p>
     </div>
 
+    
+
     <!-- Add News Button -->
-    <div class="text-end mb-5">
+    <div class="d-flex justify-content-between align-items-center mb-5">
+        <form method="GET" action="" class="d-flex">
+            @csrf
+            <input type="text" name="search" class="form-control me-2">
+            <input type="submit" name="submit" value="search" class="btn btn-primary">
+        </form>
+
         <a href="{{ route('news.create') }}" class="btn btn-custom">
             <i class="bi bi-plus-circle"></i> Yangi Yangilik Qo'shish
         </a>
@@ -168,6 +178,7 @@
                         </div>
                     @endif
                 </div>
+                <a href="/comments/{{$item->id}}" class="btn btn-primary-custom" style="margin-left:30px; text-decoration: none; border:1px solid green; padding:10px; width: 200px; margin-bottom: 10px;">Fikr qoldirish</a>
             </div>
         </div>
     @empty

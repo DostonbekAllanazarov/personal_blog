@@ -197,8 +197,15 @@
                         </div>
                     @endif
                 </div>
-            </div>
+            <div style="display:flex; justify-content: space-around;"> 
+            <a href="/delete/{{$item->id}}">Delete</a>
+            <a href="/edit/{{$item->id}}">Edit</a>
         </div>
+            </div>
+        
+        </div>
+        
+
     @empty
         <!-- Empty State -->
         <div class="alert alert-warning-custom text-center">

@@ -9,9 +9,21 @@ use Illuminate\Support\Facades\Storage;
 
 class NewsController extends Controller
 {
-    public function index()
+    public function storeComment(Request $request){
+        DB::table('comments')->insert([
+            'news_id'=>$request->id,
+            'userID' =>auth()->user()->id,
+            'commend'=>$request->comment,
+        ]);
+
+        return redirect('/comments/' . $request->id . '/');
+    }
+
+    public function index(Request $request)
     {
+        $searchText = $request->input('search');
         $news = DB::table('news')->where('status','public')->get();
+        $news = News::Search($searchText)->get();
         return view('news.index', compact('news'));
     }
 
@@ -29,6 +41,20 @@ class NewsController extends Controller
         $user = auth()->user();
         $path = $request->file('image_url')->store('images', 'public');
         $path_doc = $request->file('document')->store('documents', 'public');
+
+        if($request->input('id')){
+            DB::table('news')
+                ->where('id', $request->id)
+                ->update([
+                    'title' => $request->title,
+                    'content' => $request->content,
+                    'image_url' => $path,
+                    'document' => $path_doc,
+                    'status' => $request->input('selector')
+                ]);
+            return redirect('/mine');
+        }
+        
         try {
             // Insert the data into the database
             DB::table('news')->insert([

@@ -6,9 +6,22 @@ use App\Http\Controllers\CommentController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
 
+use App\Models\News;
+use App\Models\Comment;
+
 Route::get('/', [NewsController::class, 'index'])->name('news.index');
 Route::get('/news/create', [NewsController::class, 'create'])->name('news.create');
+
+Route::get('/comments/{id}', function($id){
+    $ns = News::with('comments.user')->find($id);
+    $cs = $ns->comments;
+    return view('comment', compact('ns', 'cs', 'id'));
+});
+
+Route::post('/storeComment', [NewsController::class, 'storeComment'])->name('storeComment');
+
 Route::post('/news', [NewsController::class, 'store'])->name('news.store');
+
 Route::get('/news/{news}', [NewsController::class, 'show'])->name('news.show');
 Route::post('/news/{news}/comments', [CommentController::class, 'store'])->name('comments.store');
 
@@ -34,6 +47,16 @@ Route::get('/mine', function(){
     $user = auth()->user();
     $news = DB::table('news')->where('user_id', $user->id)->get();
     return view("mine", compact('news'));
+});
+
+Route::get('/delete/{id}', function($id){
+    DB::table('news')->where('id', $id)->delete();
+    return redirect('/mine');
+});
+
+Route::get('/edit/{id}', function($id){
+    $n = DB::table('news')->where('id', $id)->first();
+    return view("edit", compact('n'));
 });
 
 Route::get('/dashboard', function () {
