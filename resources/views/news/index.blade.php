@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yangiliklar</title>
+    <title>Maqolalar</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Bootstrap Icons -->
@@ -77,7 +77,7 @@
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-light fixed-top">
     <div class="container">
-        <a class="navbar-brand" href="#">Yangiliklar</a>
+        <a class="navbar-brand" href="#">Maqolalar</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -112,7 +112,7 @@
                     <a class="nav-link" href="{{ route('news.index') }}">Bosh Sahifa</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('news.create') }}">Yangilik Qo'shish</a>
+                    <a class="nav-link" href="{{ route('news.create') }}">Maqola Qo'shish</a>
                 </li>
             </ul>
         </div>
@@ -125,8 +125,8 @@
 <div class="container py-5" style="background-color: #f8f9fa;">
     <!-- Page Header -->
     <div class="text-center mb-5">
-        <h1 class="fw-bold" style="color: #2c3e50; font-size: 3rem;">Yangiliklar</h1>
-        <p class="text-muted" style="font-size: 1.2rem;">O'z yangiliklaringizni biz bilan o'rtoqlashing!</p>
+        <h1 class="fw-bold" style="color: #2c3e50; font-size: 3rem;">Maqolalar</h1>
+        <p class="text-muted" style="font-size: 1.2rem;">O'z maqolalaringizni biz bilan o'rtoqlashing!</p>
     </div>
 
     
@@ -140,7 +140,7 @@
         </form>
 
         <a href="{{ route('news.create') }}" class="btn btn-custom">
-            <i class="bi bi-plus-circle"></i> Yangi Yangilik Qo'shish
+            <i class="bi bi-plus-circle"></i> Yangi Maqola Qo'shish
         </a>
     </div>
 
